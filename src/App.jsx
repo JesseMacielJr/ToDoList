@@ -110,7 +110,6 @@ const App = () => {
           ))}
       </div>
       <TodoForm addTodo={addTodo} />
-      {sort}
     </div>
   );
 };

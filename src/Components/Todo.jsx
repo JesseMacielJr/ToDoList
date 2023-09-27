@@ -11,7 +11,19 @@ const Todo = ({ todo, removeTodo, completeTodo }) => {
     >
       <div className={styles.content}>
         <p>{todo.text}</p>
-        <p className={styles.category}>({todo.category})</p>
+        <span
+          className={styles.category}
+          style={{
+            background:
+              todo.category === "Trabalho"
+                ? "#f60d0d7d"
+                : todo.category === "Faculdade"
+                ? "#08de08a9"
+                : "#7373f2a7",
+          }}
+        >
+          {todo.category}
+        </span>
       </div>
       <div>
         <button
