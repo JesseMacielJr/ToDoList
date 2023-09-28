@@ -134,9 +134,11 @@ const App = () => {
             .map((todo) => (
               <Todo
                 key={todo.id}
+                todos={todos}
                 todo={todo}
                 removeTodo={removeTodo}
                 completeTodo={completeTodo}
+                // editTodo={editTodo}
               />
             ))}
         </div>

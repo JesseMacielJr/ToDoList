@@ -1,6 +1,19 @@
 import styles from "./Todo.module.css";
+import React from "react";
+import TodoForm from "./TodoForm";
+import TodoFormEdit from "./TodoFormEdit";
 
-const Todo = ({ todo, removeTodo, completeTodo }) => {
+const Todo = ({ todos, todo, removeTodo, completeTodo }) => {
+  const [isModal, setIsModal] = React.useState(false);
+
+  function handleClick() {
+    setIsModal(!isModal);
+  }
+
+  function handleOutside(e) {
+    if (e.target === e.currentTarget) setIsModal(false);
+  }
+
   return (
     <div
       className={styles.todo}
@@ -32,9 +45,23 @@ const Todo = ({ todo, removeTodo, completeTodo }) => {
         >
           {todo.isCompleted ? "Desfazer" : "Completar"}
         </button>
+        <button className={styles.edit} onClick={handleClick}>
+          Editar
+        </button>
         <button className={styles.remove} onClick={() => removeTodo(todo.id)}>
           X
         </button>
+      </div>
+      <div
+        className={`${isModal && styles.open} ${styles.todoModal}`}
+        onClick={handleOutside}
+      >
+        <TodoFormEdit
+          todos={todos}
+          todo={todo}
+          setIsModal={setIsModal}
+          isModal={isModal}
+        />
       </div>
     </div>
   );
