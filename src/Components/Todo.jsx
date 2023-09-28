@@ -1,6 +1,5 @@
 import styles from "./Todo.module.css";
 import React from "react";
-import TodoForm from "./TodoForm";
 import TodoFormEdit from "./TodoFormEdit";
 
 const Todo = ({
