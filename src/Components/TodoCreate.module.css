@@ -1,0 +1,28 @@
+.todoCreate {
+  padding: 20px 0px;
+}
+
+.todoCreate>button {
+  width: 100%;
+  padding: 20px 40px;
+  background: #3cab3c;
+  font-size: 1.125rem;
+  font-weight: 500;
+}
+
+.todoModal {
+  background-color: rgba(0, 0, 0, .6);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: none;
+  z-index: 100;
+}
+
+.todoModal.open {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

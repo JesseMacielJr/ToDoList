@@ -3,7 +3,7 @@ import styles from "./Filter.module.css";
 const Filter = ({ filter, setFilter, setSort }) => {
   return (
     <div className={styles.filter}>
-      <h2>Filtrar:</h2>
+      <h2>Filtrar</h2>
       <div className={styles["filter-options"]}>
         <div>
           <p>Status:</p>

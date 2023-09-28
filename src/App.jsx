@@ -1,9 +1,9 @@
 import React from "react";
 import "./App.css";
 import Todo from "./Components/Todo";
-import TodoForm from "./Components/TodoForm";
 import Search from "./Components/Search";
 import Filter from "./Components/Filter";
+import TodoCreate from "./Components/TodoCreate";
 
 const App = () => {
   const [todos, setTodos] = React.useState([
@@ -37,6 +37,24 @@ const App = () => {
       category: "Pessoal",
       isCompleted: false,
     },
+    {
+      id: 6,
+      text: "Comer 6 refeições",
+      category: "Pessoal",
+      isCompleted: false,
+    },
+    // {
+    //   id: 7,
+    //   text: "Estudar Java",
+    //   category: "Faculdade",
+    //   isCompleted: false,
+    // },
+    // {
+    //   id: 8,
+    //   text: "Tocar violão e teclado",
+    //   category: "Pessoal",
+    //   isCompleted: false,
+    // },
   ]);
 
   const [search, setSearch] = React.useState("");
@@ -84,6 +102,7 @@ const App = () => {
         <h1>Lista de Tarefas</h1>
         <Search search={search} setSearch={setSearch} />
         <Filter filter={filter} setFilter={setFilter} setSort={setSort} />
+        <TodoCreate addTodo={addTodo} />
         <div className="todo-list">
           {todos
             .filter((todo) =>
@@ -108,7 +127,6 @@ const App = () => {
               />
             ))}
         </div>
-        <TodoForm addTodo={addTodo} />
       </div>
     </div>
   );
