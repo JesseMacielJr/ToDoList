@@ -7,10 +7,21 @@
 .filter-options {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: start;
   gap: 3rem;
+}
+
+.filterStatus select {
+  padding: 7px 14px;
+  width: 75%;
 }
 
 .filter-options div {
   flex: 1 1 0;
+}
+
+.ordemAlfabetica button.active,
+.ordemCategoria button.active {
+  opacity: 1;
+  background-color: #2d377c;
 }

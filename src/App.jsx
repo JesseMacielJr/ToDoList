@@ -27,20 +27,20 @@ const App = () => {
     },
     {
       id: 4,
-      text: "Estudar aula 06 de Física 3",
-      category: "Faculdade",
+      text: "Fazer reunião diária",
+      category: "Trabalho",
       isCompleted: false,
     },
     {
       id: 5,
       text: "Estudar detecção de objetos",
-      category: "Pessoal",
+      category: "Faculdade",
       isCompleted: false,
     },
     {
       id: 6,
-      text: "Comer 6 refeições",
-      category: "Pessoal",
+      text: "Devolver livro",
+      category: "Faculdade",
       isCompleted: false,
     },
     // {
@@ -59,7 +59,8 @@ const App = () => {
 
   const [search, setSearch] = React.useState("");
   const [filter, setFilter] = React.useState("All");
-  const [sort, setSort] = React.useState("Asc");
+  const [sortAlphabetic, setSortAlphabetic] = React.useState("");
+  const [filterCategory, setFilterCategory] = React.useState("");
 
   const addTodo = (text, category) => {
     const newTodos = [
@@ -101,7 +102,14 @@ const App = () => {
       <div className="app">
         <h1>Lista de Tarefas</h1>
         <Search search={search} setSearch={setSearch} />
-        <Filter filter={filter} setFilter={setFilter} setSort={setSort} />
+        <Filter
+          filter={filter}
+          setFilter={setFilter}
+          sortAlphabetic={sortAlphabetic}
+          setSortAlphabetic={setSortAlphabetic}
+          filterCategory={filterCategory}
+          setFilterCategory={setFilterCategory}
+        />
         <TodoCreate addTodo={addTodo} />
         <div className="todo-list">
           {todos
@@ -114,9 +122,14 @@ const App = () => {
             )
             .filter((todo) => todo.text.toLowerCase().includes(search))
             .sort((a, b) =>
-              sort === "Asc"
+              sortAlphabetic === "Asc"
                 ? a.text.localeCompare(b.text)
-                : b.text.localeCompare(a.text)
+                : sortAlphabetic === "Desc"
+                ? b.text.localeCompare(a.text)
+                : a.id > b.id
+            )
+            .filter((todo) =>
+              filterCategory ? todo.category === filterCategory : todo
             )
             .map((todo) => (
               <Todo
