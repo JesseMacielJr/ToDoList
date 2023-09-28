@@ -3,7 +3,14 @@ import React from "react";
 import TodoForm from "./TodoForm";
 import TodoFormEdit from "./TodoFormEdit";
 
-const Todo = ({ todos, todo, removeTodo, completeTodo }) => {
+const Todo = ({
+  todos,
+  todo,
+  removeTodo,
+  completeTodo,
+  filterCategory,
+  setFilterCategory,
+}) => {
   const [isModal, setIsModal] = React.useState(false);
 
   function handleClick() {
@@ -12,6 +19,16 @@ const Todo = ({ todos, todo, removeTodo, completeTodo }) => {
 
   function handleOutside(e) {
     if (e.target === e.currentTarget) setIsModal(false);
+  }
+
+  function handleFilterCategory(e) {
+    const buttonActive = e.target.innerText;
+
+    if (buttonActive === filterCategory) {
+      setFilterCategory("");
+    } else {
+      setFilterCategory(buttonActive);
+    }
   }
 
   return (
@@ -31,9 +48,10 @@ const Todo = ({ todos, todo, removeTodo, completeTodo }) => {
               todo.category === "Trabalho"
                 ? "#f60d0d7d"
                 : todo.category === "Faculdade"
-                ? "#08de08a9"
+                ? "#04b704a9"
                 : "#7373f2a7",
           }}
+          onClick={handleFilterCategory}
         >
           {todo.category}
         </span>

@@ -138,7 +138,8 @@ const App = () => {
                 todo={todo}
                 removeTodo={removeTodo}
                 completeTodo={completeTodo}
-                // editTodo={editTodo}
+                filterCategory={filterCategory}
+                setFilterCategory={setFilterCategory}
               />
             ))}
         </div>
