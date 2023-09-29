@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./TodoFormEdit.module.css";
 
-const TodoFormEdit = ({ todos, todo, isModal, setIsModal }) => {
+const TodoFormEdit = ({ setTodos, todos, todo, isModal, setIsModal }) => {
   const [value, setValue] = React.useState("");
   const [category, setCategory] = React.useState("");
 
@@ -9,12 +9,24 @@ const TodoFormEdit = ({ todos, todo, isModal, setIsModal }) => {
     e.preventDefault();
     if (!value || !category) return;
 
-    todos.map((todoAtual) => {
-      if (todoAtual.id === todo.id) {
-        todoAtual.text = value;
-        todoAtual.category = category;
-      }
-    });
+    // Criar cópia do array original
+    const updatedTodos = [...todos];
+
+    // Achar o índice de onde esta a tarefa com o id específico
+    const indexToEdit = updatedTodos.findIndex(
+      (todoAtual) => todoAtual.id === todo.id
+    );
+
+    // Verificar se esse objeto existe na array
+    if (indexToEdit !== -1) {
+      // Selecionar o todo a ser editado
+      const editedTodo = { ...updatedTodos[indexToEdit] };
+      editedTodo.text = value;
+      editedTodo.category = category;
+      updatedTodos[indexToEdit] = editedTodo;
+      setTodos(updatedTodos);
+    }
+    window.localStorage.setItem("todos", JSON.stringify(updatedTodos));
 
     setValue("");
     setCategory("");

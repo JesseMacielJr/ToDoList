@@ -4,6 +4,7 @@ import TodoFormEdit from "./TodoFormEdit";
 
 const Todo = ({
   todos,
+  setTodos,
   todo,
   removeTodo,
   completeTodo,
@@ -75,6 +76,7 @@ const Todo = ({
       >
         <TodoFormEdit
           todos={todos}
+          setTodos={setTodos}
           todo={todo}
           setIsModal={setIsModal}
           isModal={isModal}
